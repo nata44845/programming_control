@@ -98,7 +98,7 @@ sudo dpkg -i virtualbox-7.0_7.0.12-159484~Ubuntu~jammy_amd64.deb
 
 7. В подключенном MySQL репозитории создать базу данных “Друзья
 человека”
-
+```
 CREATE DATABASE HUMAN_FRIENDS;
 SHOW DATABASES;
 
@@ -112,6 +112,7 @@ SHOW DATABASES;
 | performance_schema |
 | sys                |
 +--------------------+
+```
 
 8. Создать таблицы с иерархией из диаграммы в БД
 
