@@ -99,8 +99,8 @@ sudo dpkg -i virtualbox-7.0_7.0.12-159484~Ubuntu~jammy_amd64.deb
 7. В подключенном MySQL репозитории создать базу данных “Друзья
 человека”
 ```
-CREATE DATABASE HUMAN_FRIENDS;
-SHOW DATABASES;
+create database HUMAN_FRIENDS;
+show databases;
 
 +--------------------+
 | Database           |
@@ -116,7 +116,107 @@ SHOW DATABASES;
 
 8. Создать таблицы с иерархией из диаграммы в БД
 
+```
+use HUMAN_FRIENDS;
 
+CREATE TABLE animals
+(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	animal_type VARCHAR(30)
+);
+
+CREATE TABLE pets
+(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	animal_kind VARCHAR(30),
+	animal_type_id INT DEFAULT 1,
+	FOREIGN KEY (animal_type_id) REFERENCES animals (id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE pack_animals
+(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	animal_kind VARCHAR(30),
+	animal_type_id INT DEFAULT 2,
+	FOREIGN KEY (animal_type_id) REFERENCES animals (id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE dogs 
+(       
+    id INT AUTO_INCREMENT PRIMARY KEY, 
+    name VARCHAR(30), 
+    commands VARCHAR(100),
+    birthday DATE,
+    animal_kind_id INT DEFAULT 1,
+    Foreign KEY (animal_kind_id) REFERENCES pets (id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE cats 
+(       
+    id INT AUTO_INCREMENT PRIMARY KEY, 
+    name VARCHAR(30), 
+    commands VARCHAR(100),
+    birthday DATE,
+    animal_kind_id INT DEFAULT 2,
+    Foreign KEY (animal_kind_id) REFERENCES pets (id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE hamsters 
+(       
+    id INT AUTO_INCREMENT PRIMARY KEY, 
+    name VARCHAR(30), 
+    commands VARCHAR(100),
+    birthday DATE,
+    animal_kind_id INT DEFAULT 3,
+    Foreign KEY (animal_kind_id) REFERENCES pets (id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE horses 
+(       
+    id INT AUTO_INCREMENT PRIMARY KEY, 
+    name VARCHAR(30), 
+    commands VARCHAR(100),
+    birthday DATE,
+    animal_kind_id INT DEFAULT 1,
+    Foreign KEY (animal_kind_id) REFERENCES pack_animals (id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE camels 
+(       
+    id INT AUTO_INCREMENT PRIMARY KEY, 
+    name VARCHAR(30), 
+    commands VARCHAR(100),
+    birthday DATE,
+    animal_kind_id INT DEFAULT 2,
+    Foreign KEY (animal_kind_id) REFERENCES pack_animals (id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE donkeys 
+(       
+    id INT AUTO_INCREMENT PRIMARY KEY, 
+    name VARCHAR(30), 
+    commands VARCHAR(100),
+    birthday DATE,
+    animal_kind_id INT DEFAULT 3,
+    Foreign KEY (animal_kind_id) REFERENCES pack_animals (id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+show tables;
+
++-------------------------+
+| Tables_in_HUMAN_FRIENDS |
++-------------------------+
+| animals                 |
+| camels                  |
+| cats                    |
+| dogs                    |
+| donkeys                 |
+| hamsters                |
+| horses                  |
+| pack_animals            |
+| pets                    |
++-------------------------+
+```
 
 9. Заполнить низкоуровневые таблицы именами(животных), командами
 которые они выполняют и датами рождения
