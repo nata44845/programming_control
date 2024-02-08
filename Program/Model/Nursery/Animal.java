@@ -4,16 +4,24 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public abstract class Animal {
-    protected int Id;
+    protected int id;
     protected String name;
-    protected LocalDate birthday;
-    
+    protected LocalDate birth;
+
+    public Animal() {
+    }
+
+    public Animal(String name, LocalDate birth) {
+        this.name = name;
+        this.birth = birth;
+    }
+
     public void setId(int petId) {
-        this.Id = petId;
+        this.id = petId;
     }
 
     public int getId() {
-        return Id;
+        return id;
     }
 
     public void setName(String name) {
@@ -24,22 +32,27 @@ public abstract class Animal {
         return name;
     }
 
-    public void setBirth(LocalDate date) {
-        this.birthday = date;
+    public void setBirth(LocalDate birth) {
+        this.birth = birth;
     }
 
-    public LocalDate getBirth(){
-        return birthday;
+    public LocalDate getBirth() {
+        return birth;
     }
 
     public String getBirthday() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-        return formatter.format(birthday);
+        if (birth != null) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+            return formatter.format(birth);
+        } else
+            return null;
     }
 
     @Override
     public String toString() {
-        return String.format("%d. %s: имя: %s, дата рождения: %s ", getId(), getClass().getSimpleName(), name, getBirthday());
+        System.out.println("Hi1");
+        return String.format("%d. %s: имя: %s, дата рождения: %s ", getId(), getClass().getSimpleName(), name,
+                getBirthday());
     }
 
 }

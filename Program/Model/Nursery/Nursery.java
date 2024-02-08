@@ -18,11 +18,12 @@ public class Nursery<E extends Animal> implements Serializable, Iterable<E> {
     }
 
     public void addItem(E item) {
+
         item.setId(id_pet++);
         itemList.add(item);
     }
 
-    public List<E> getPetList() {
+    public List<E> getAnimalList() {
         return itemList;
     }
 
@@ -53,7 +54,7 @@ public class Nursery<E extends Animal> implements Serializable, Iterable<E> {
         return itemList.size();
     }
 
-    public E getAnimal(int number) {
+    public E getAnimalItem(int number) {
         for (int i = 0; i < itemList.size(); i++)
             if (itemList.get(i).getId() == number)
                 return itemList.get(i);
