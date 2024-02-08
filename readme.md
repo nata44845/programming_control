@@ -94,7 +94,7 @@ sudo dpkg -i virtualbox-7.0_7.0.12-159484~Ubuntu~jammy_amd64.deb
 животных войдут классы: собаки, кошки, хомяки, а в класс вьючные животные
 войдут: Лошади, верблюды и ослы).
 
-
+![](images/Diagram.png)
 
 7. В подключенном MySQL репозитории создать базу данных “Друзья
 человека”
@@ -275,12 +275,42 @@ UNION SELECT * FROM donkeys;
 животные старше 1 года, но младше 3 лет и в отдельном столбце с точностью
 до месяца подсчитать возраст животных в новой таблице
 
+```
+CREATE TABLE young_animals
+SELECT name, commands, birthday, animal_kind_id, TIMESTAMPDIFF(MONTH, birthday, CURDATE()) AS age_in_month
+FROM (SELECT * FROM dogs
+UNION SELECT * FROM cats
+UNION SELECT * FROM hamsters
+UNION SELECT * FROM horses
+UNION SELECT * FROM camels
+UNION SELECT * FROM donkeys) AA
+WHERE birthday BETWEEN ADDDATE(CURDATE(), INTERVAL -3 YEAR) AND ADDDATE(CURDATE(), INTERVAL -1 YEAR);
 
+```
 
 12. Объединить все таблицы в одну, при этом сохраняя поля, указывающие на
 прошлую принадлежность к старым таблицам.
 
+```
+SELECT a.name,a.commands,a.birthday,a.animal_kind, b.animal_type FROM
+(SELECT a.name,a.commands,a.birthday,p.animal_kind,p.animal_type_id FROM (
+SELECT * FROM dogs
+UNION ALL
+SELECT * FROM cats
+UNION ALL
+SELECT * FROM hamsters) a
+LEFT JOIN pets p on a.animal_kind_id=p.id
+union all
+SELECT a.name,a.commands,a.birthday,p.animal_kind,p.animal_type_id FROM (
+SELECT * FROM horses
+UNION ALL
+SELECT * FROM camels
+UNION ALL
+SELECT * FROM donkeys) a
+LEFT JOIN pack_animals p on a.animal_kind_id=p.id) a
+LEFT JOIN animals b on a.animal_type_id = b.id;
 
+```
 
 13. Создать класс с Инкапсуляцией методов и наследованием по диаграмме.
 14. Написать программу, имитирующую работу реестра домашних животных.
