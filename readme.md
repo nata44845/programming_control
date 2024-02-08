@@ -18,7 +18,7 @@
 ## Задание
 
 1. Используя команду cat в терминале операционной системы Linux, создать два файла Домашние животные (заполнив файл собаками, кошками, хомяками) и Вьючные животными (заполнив файл Лошадьми, верблюдами и ослы), а затем объединить их. Просмотреть содержимое созданного файла. Переименовать файл, дав ему новое имя (Друзья человека).
-
+```
 cat>"Домашние животные"
 
 cat>"Вьючные животные"
@@ -30,11 +30,13 @@ cat "Животные"
 mv "Животные" "Друзья человека"
 
 ll
+```
 
 ![](/images/1.png)
 
 2. Создать директорию, переместить файл туда.
 
+```
 mkdir task2
 
 mv "Друзья человека" task2
@@ -42,11 +44,12 @@ mv "Друзья человека" task2
 cd task2
 
 ll
+```
 
 ![](/images/2.png)
 
 3. Подключить дополнительный репозиторий MySQL. Установить любой пакет из этого репозитория.
-
+```
 sudo su
 
 wget -O- https://repo.mysql.com/RPM-GPG-KEY-mysql-2023 | sudo apt-key add -
@@ -60,9 +63,11 @@ sudo mysql
 ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'Password_123';
 
 exit
+```
 
 4. Установить и удалить deb-пакет с помощью dpkg.
 
+```
 wget https://download.virtualbox.org/virtualbox/7.0.12/virtualbox-7.0_7.0.12-159484~Ubuntu~jammy_amd64.deb
 
 sudo nano /etc/apt/sources.list.d/vbox.list
@@ -78,11 +83,11 @@ sudo dpkg -i virtualbox-7.0_7.0.12-159484~Ubuntu~jammy_amd64.deb
 sudo apt --fix-broken install
 
 sudo dpkg -i virtualbox-7.0_7.0.12-159484~Ubuntu~jammy_amd64.deb
-
+```
 
 5. Выложить историю команд в терминале ubuntu
 
-control.txt
+    **control.txt**
 
 6. Нарисовать диаграмму, в которой есть класс родительский класс, домашние
 животные и вьючные животные, в составы которых в случае домашних
