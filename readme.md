@@ -45,27 +45,95 @@ ll
 
 ![](/images/2.png)
 
-3. Подключить дополнительный репозиторий MySQL. Установить любой пакет
-из этого репозитория.
+3. Подключить дополнительный репозиторий MySQL. Установить любой пакет из этого репозитория.
+
+sudo su
+
+wget -O- https://repo.mysql.com/RPM-GPG-KEY-mysql-2023 | sudo apt-key add -
+
+apt update
+
+apt install mysql-server
+
+sudo mysql
+
+ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'Password_123';
+
+exit
+
 4. Установить и удалить deb-пакет с помощью dpkg.
+
+wget https://download.virtualbox.org/virtualbox/7.0.12/virtualbox-7.0_7.0.12-159484~Ubuntu~jammy_amd64.deb
+
+sudo nano /etc/apt/sources.list.d/vbox.list
+
+Пишем текст
+deb [arch=amd64 signed-by=/usr/share/keyrings/oracle-virtualbox-2016.gpg] https://download.virtualbox.org/virtualbox/debian jammy contrib
+
+
+wget -O- https://www.virtualbox.org/download/oracle_vbox_2016.asc | sudo gpg --dearmor --yes --output /usr/share/keyrings/oracle-virtualbox-2016.gpg
+
+sudo dpkg -i virtualbox-7.0_7.0.12-159484~Ubuntu~jammy_amd64.deb
+
+sudo apt --fix-broken install
+
+sudo dpkg -i virtualbox-7.0_7.0.12-159484~Ubuntu~jammy_amd64.deb
+
+
 5. Выложить историю команд в терминале ubuntu
+
+control.txt
+
 6. Нарисовать диаграмму, в которой есть класс родительский класс, домашние
 животные и вьючные животные, в составы которых в случае домашних
 животных войдут классы: собаки, кошки, хомяки, а в класс вьючные животные
 войдут: Лошади, верблюды и ослы).
+
+
+
 7. В подключенном MySQL репозитории создать базу данных “Друзья
 человека”
+
+CREATE DATABASE HUMAN_FRIENDS;
+SHOW DATABASES;
+
++--------------------+
+| Database           |
++--------------------+
+| HUMAN_FRIENDS      |
+| gb                 |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+
 8. Создать таблицы с иерархией из диаграммы в БД
+
+
+
 9. Заполнить низкоуровневые таблицы именами(животных), командами
 которые они выполняют и датами рождения
+
+
+
 10. Удалив из таблицы верблюдов, т.к. верблюдов решили перевезти в другой
 питомник на зимовку. Объединить таблицы лошади, и ослы в одну таблицу.
+
+
+
 11. Создать новую таблицу “молодые животные” в которую попадут все
 животные старше 1 года, но младше 3 лет и в отдельном столбце с точностью
 до месяца подсчитать возраст животных в новой таблице
+
+
+
 12. Объединить все таблицы в одну, при этом сохраняя поля, указывающие на
 прошлую принадлежность к старым таблицам.
-13.Создать класс с Инкапсуляцией методов и наследованием по диаграмме.
+
+
+
+13. Создать класс с Инкапсуляцией методов и наследованием по диаграмме.
 14. Написать программу, имитирующую работу реестра домашних животных.
 В программе должен быть реализован следующий функционал:
 14. 1. Завести новое животное

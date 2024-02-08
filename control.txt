@@ -1,0 +1,24 @@
+  594  mkdir programming_control
+  595  cd programming_control 
+  596  cat>"Домашние животные"
+  597  cat>"Вьючные животные"
+  598  cat "Домашние животные" "Вьючные животные" > "Животные"
+  599  cat "Животные"
+  600  mv "Животные" "Друзья человека"
+  601  ll
+  602  mkdir task2
+  603  mv "Друзья человека" task2
+  604  cd task2
+  605  ll
+  606  sudo su
+  607  wget -O- https://repo.mysql.com/RPM-GPG-KEY-mysql-2023 | sudo apt-key add -
+  608  apt update
+  609  apt install mysql-server
+  610  sudo mysql
+  625  wget https://download.virtualbox.org/virtualbox/7.0.12/virtualbox-7.0_7.0.12-159484~Ubuntu~jammy_amd64.deb
+  626  sudo nano /etc/apt/sources.list.d/vbox.list
+  627  wget -O- https://www.virtualbox.org/download/oracle_vbox_2016.asc | sudo gpg --dearmor --yes --output /usr/share/keyrings/oracle-virtualbox-2016.gpg
+  628  sudo dpkg -i virtualbox-7.0_7.0.12-159484~Ubuntu~jammy_amd64.deb
+  629  sudo apt --fix-broken install
+  630  sudo dpkg -i virtualbox-7.0_7.0.12-159484~Ubuntu~jammy_amd64.deb
+  647  history | tail -n 40 > control.txt
