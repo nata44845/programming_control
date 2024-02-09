@@ -3,6 +3,8 @@ package Model.Nursery;
 import java.util.Iterator;
 import java.util.List;
 
+import Model.Animal.Animal;
+
 public class NurseryIterator<E extends Animal> implements Iterator<E> {
     private int index;
     private List<E> itemList;

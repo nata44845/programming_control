@@ -1,8 +1,8 @@
 package Presenter;
 
-import Model.Nursery.Animal;
-import Model.Nursery.AnimalCreator;
-import Model.Nursery.AnimalType;
+import Model.Animal.Animal;
+import Model.Animal.AnimalCreator;
+import Model.Animal.AnimalType;
 import Model.Nursery.Nursery;
 import View.View;
 import FileWork.Writable;
@@ -44,6 +44,7 @@ public class Presenter {
                 return true;
             }
         }
+        view.printAnswer("Запись не найдена\n");
         return false;
     }
 
@@ -55,6 +56,7 @@ public class Presenter {
                 return true;
             }
         }
+        view.printAnswer("Запись не найдена\n");
         return false;
     }
 
@@ -70,6 +72,7 @@ public class Presenter {
                 return true;
             }
         }
+        view.printAnswer("Запись не найдена\n");
         return false;
     }
 

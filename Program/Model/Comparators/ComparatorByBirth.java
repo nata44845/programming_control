@@ -2,7 +2,7 @@ package Model.Comparators;
 
 import java.util.Comparator;
 
-import Model.Nursery.Animal;
+import Model.Animal.Animal;
 
 public class ComparatorByBirth<E extends Animal> implements Comparator<E> {
     @Override

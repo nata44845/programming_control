@@ -1,4 +1,4 @@
-﻿package Model.Nursery;
+﻿package Model.Animal;
 
 import Model.Pack.Camel;
 import Model.Pack.Donkey;

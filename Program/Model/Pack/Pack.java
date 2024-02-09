@@ -1,6 +1,6 @@
 package Model.Pack;
 
-import Model.Nursery.Animal;
+import Model.Animal.Animal;
 
 public abstract class Pack extends Animal {
     

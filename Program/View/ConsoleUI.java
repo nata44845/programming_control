@@ -2,7 +2,7 @@ package View;
 
 import Presenter.Presenter;
 import FileWork.FileHandler;
-import Model.Nursery.AnimalType;
+import Model.Animal.AnimalType;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
