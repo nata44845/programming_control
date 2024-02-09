@@ -12,6 +12,8 @@ public class MainMenu {
         commandList = new ArrayList<>();
         commandList.add(new GetNurseryInfo(consoleUI));
         commandList.add(new AddItem(consoleUI));
+        commandList.add(new ShowCommands(consoleUI));
+        commandList.add(new AddCommands(consoleUI));
         // commandList.add(new SortByName(consoleUI));
         // commandList.add(new SortByAge(consoleUI));
         // commandList.add(new FindData(consoleUI));

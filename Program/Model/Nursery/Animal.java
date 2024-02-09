@@ -7,6 +7,7 @@ public abstract class Animal {
     protected int id;
     protected String name;
     protected LocalDate birth;
+    protected String commands;
 
     public Animal() {
     }
@@ -16,28 +17,28 @@ public abstract class Animal {
         this.birth = birth;
     }
 
-    public void setId(int petId) {
-        this.id = petId;
-    }
-
     public int getId() {
         return id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setId(int petId) {
+        this.id = petId;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setBirth(LocalDate birth) {
-        this.birth = birth;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public LocalDate getBirth() {
         return birth;
+    }
+
+    public void setBirth(LocalDate birth) {
+        this.birth = birth;
     }
 
     public String getBirthday() {
@@ -48,9 +49,16 @@ public abstract class Animal {
             return null;
     }
 
+    public String getCommands() {
+        return commands;
+    }
+
+    public void setCommands(String commands) {
+        this.commands = commands;
+    }
+
     @Override
     public String toString() {
-        System.out.println("Hi1");
         return String.format("%d. %s: имя: %s, дата рождения: %s ", getId(), getClass().getSimpleName(), name,
                 getBirthday());
     }

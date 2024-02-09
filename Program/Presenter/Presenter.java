@@ -7,14 +7,12 @@ import Model.Nursery.Nursery;
 import View.View;
 import FileWork.Writable;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public class Presenter {
     private View view;
     private Nursery<Animal> nursery;
     Writable wr;
     String fileName;
-    DateTimeFormatter formatter;
     private AnimalCreator animalCreator;
 
     public Presenter(View view, Writable wr) {
@@ -22,7 +20,6 @@ public class Presenter {
         this.view = view;
         this.wr = wr;
         fileName = "Nursery.txt";
-        formatter = DateTimeFormatter.ofPattern("dd:MM:yyyy HH:mm:ss");
         this.animalCreator = new AnimalCreator();
     }
 
@@ -30,8 +27,8 @@ public class Presenter {
         view.printAnswer(nursery.getNurseryInfo());
     }
 
-    public Animal addItem(int a_type,String name, LocalDate date) {
-        Animal animal = animalCreator.createAnimal(AnimalType.getType(a_type),name, date);
+    public Animal addItem(int a_type,String name, LocalDate date, String commands) {
+        Animal animal = animalCreator.createAnimal(AnimalType.getType(a_type),name, date, commands);
         nursery.addItem(animal);
         return animal;
     }
@@ -44,6 +41,32 @@ public class Presenter {
         for (Animal item : nursery) {
             if (item.getId() == id) {
                 view.printAnswer(item.toString());
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean showCommands(Integer id) {
+        for (Animal item : nursery) {
+            if (item.getId() == id) {
+                view.printAnswer(item.toString());
+                view.printAnswer(item.getCommands()+"\n");
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean addCommands(Integer id, String commands) {
+        for (Animal item : nursery) {
+            if (item.getId() == id) {
+                if (item.getCommands().length()>0)
+                    item.setCommands(item.getCommands()+", "+commands);
+                else 
+                    item.setCommands(commands);
+                view.printAnswer(item.toString());
+                view.printAnswer(item.getCommands()+"\n");
                 return true;
             }
         }
